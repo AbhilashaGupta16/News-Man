@@ -8,14 +8,14 @@ export class News extends Component {
 
     static defaultProps={
         country:"in",
-        pSize:6,
+        // pSize:6,
         category:"general"
 
     }
 
     static propTypes={
         country:PropTypes.string,
-        pSize:PropTypes.number,
+        // pSize:PropTypes.number,
         category:PropTypes.string,
     }
     
@@ -73,16 +73,15 @@ export class News extends Component {
     }
 
     render() {
-        let {pSize}=this.props
-        // console.log("render")
+        let {mode,color}=this.props
         return (
             <div className="container my-3 ">
-                <h1 className="text-center" style={{marginTop:"100px"}}>NewsWorld - Daily Headlines !</h1>
+                <h1 className={`text-center text-${mode=="primary"?"dark":"light"}`} style={{marginTop:"100px"}}>NewsWorld - Daily Headlines !</h1>
                 {this.state.loading && <Spinner/>}
                 <div className="row">
                 {!this.state.loading && this.state.articles.map((ele)=>{
                     return <div className="col col-xl-4 col-lg-6 col-md-12 col-sm-12 col-12 text-center my-3"  key={ele.url}>
-                        <Newsitem title={ele.title?ele.title.slice(0,45):""} desc={ele.description?ele.description.slice(0,100):""} imgurl={ele.urlToImage?ele.urlToImage: "https://ichef.bbci.co.uk/live-experience/cps/624/cpsprodpb/13590/production/_97584297_breaking_news.png"} newsurl={ele.url} author={ele.author?"By "+ele.author+" ":"By Unknown "} date={ele.publishedAt?"on "+new Date(ele.publishedAt).toGMTString()+" ":" "} source={ele.source.name} color={this.props.color}/>
+                        <Newsitem title={ele.title?ele.title.slice(0,45):""} desc={ele.description?ele.description.slice(0,100):""} imgurl={ele.urlToImage?ele.urlToImage: "https://ichef.bbci.co.uk/live-experience/cps/624/cpsprodpb/13590/production/_97584297_breaking_news.png"} newsurl={ele.url} author={ele.author?"By "+ele.author+" ":"By Unknown "} date={ele.publishedAt?"on "+new Date(ele.publishedAt).toGMTString()+" ":" "} source={ele.source.name} color={color} mode={mode}/>
                     </div>                                
                    
                 })}

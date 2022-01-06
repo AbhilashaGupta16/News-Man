@@ -5,6 +5,7 @@ export class Navbar extends Component {
   static propTypes = {};
 
   render() {
+    let {toggleMode,mode}=this.props
     return (
       <div>
         <nav className="navbar navbar-expand-lg fixed-top navbar-dark bg-dark">
@@ -32,9 +33,9 @@ export class Navbar extends Component {
                   <Link
                     className="nav-link"
                     aria-current="page"
-                    to="/"
+                    to="/general"
                   >
-                    Home
+                    General
                   </Link>
                 </li>
                 <li className="nav-item">
@@ -74,6 +75,10 @@ export class Navbar extends Component {
                   </Link>
                 </li>
               </ul>
+              <div className="form-check form-switch">
+                <input className="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDefault" onClick={toggleMode}/>
+                <label className="form-check-label text-light" htmlFor="flexSwitchCheckDefault">{mode=="primary"?"Enable Dark Mode":"Enable Light Mode"}</label>
+              </div>
             </div>
           </div>
         </nav>
