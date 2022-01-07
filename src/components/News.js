@@ -73,10 +73,10 @@ export class News extends Component {
     }
 
     render() {
-        let {mode,color}=this.props
+        let {mode,color,category}=this.props
         return (
             <div className="container my-3 ">
-                <h1 className={`text-center text-${mode=="primary"?"dark":"light"}`} style={{marginTop:"100px"}}>NewsWorld - Daily Headlines !</h1>
+                <h1 className={`text-center text-${mode=="primary"?"dark":"light"}`} style={{marginTop:"100px"}}>NewsWorld - Top {category[0].toUpperCase()+category.substr(1,)} Headlines!</h1>
                 {this.state.loading && <Spinner/>}
                 <div className="row">
                 {!this.state.loading && this.state.articles.map((ele)=>{
